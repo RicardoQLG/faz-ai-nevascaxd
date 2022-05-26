@@ -34,4 +34,10 @@ describe('AskForItems', () => {
     jest.spyOn(getAllItemsRepositoryStub, 'get').mockImplementationOnce(() => { throw new Error('any_error') })
     await expect(sut.handle()).rejects.toThrow(new Error('any_error'))
   })
+
+  test('should return list of tasks', async () => {
+    const { sut } = makeSut()
+    const response = await sut.handle()
+    expect(response).toEqual(['valid_task'])
+  })
 })
