@@ -3,6 +3,7 @@ import { GetAllItemsRepository } from '../../domain/protocols/GetAllItemsReposit
 
 export class FileGetAllItemsRepository implements GetAllItemsRepository {
   async get (): Promise<any> {
-    await fs.readFileSync('tasks.json')
+    const fileData = await fs.readFileSync('tasks.json')
+    JSON.parse(fileData.toString())
   }
 }
