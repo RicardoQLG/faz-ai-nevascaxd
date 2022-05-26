@@ -30,4 +30,10 @@ describe('FileGetAllItemsRepository', () => {
     await sut.get()
     expect(parseSpy).toBeCalledWith('["valid_task"]')
   })
+
+  test('should throw an error if JSON parse throws', async () => {
+    const { sut } = makeSut()
+    jest.spyOn(JSON, 'parse').mockImplementation(() => { throw new Error('any_error') })
+    await expect(sut.get()).rejects.toThrow(new Error('any_error'))
+  })
 })
