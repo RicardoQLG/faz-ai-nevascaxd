@@ -7,4 +7,5 @@ const options: NetConnectOpts = {
 }
 
 const client = connect(options)
+client.pipe(process.stdout)
 void app(client)
