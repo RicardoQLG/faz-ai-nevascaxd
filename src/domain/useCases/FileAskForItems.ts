@@ -1,6 +1,7 @@
 import { GetAllItemsRepository } from '../../data/protocols/GetAllItemsRepository'
+import { AskForItems } from '../protocols/AskForItems'
 
-export class FileAskForItems {
+export class FileAskForItems implements AskForItems {
   private readonly getAllItemsRepository: GetAllItemsRepository
   constructor (getAllItemsRepository: GetAllItemsRepository) {
     this.getAllItemsRepository = getAllItemsRepository
