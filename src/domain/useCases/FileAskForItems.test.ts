@@ -39,19 +39,19 @@ describe('AskForItems', () => {
     const { sut, getAllItemsRepositoryStub } = makeSut()
     jest.spyOn(getAllItemsRepositoryStub, 'get').mockResolvedValue(['valid_task1'])
     const response = await sut.handle()
-    expect(response).toEqual('NevascaXd, você já valid_task1?')
+    expect(response).toEqual('NevascaXD, você já valid_task1?')
   })
 
   test('should return a simples message with 2 tasks', async () => {
     const { sut, getAllItemsRepositoryStub } = makeSut()
     jest.spyOn(getAllItemsRepositoryStub, 'get').mockResolvedValue(['valid_task1', 'valid_task2'])
     const response = await sut.handle()
-    expect(response).toEqual('NevascaXd, você já valid_task1 e valid_task2?')
+    expect(response).toEqual('NevascaXD, você já valid_task1 e valid_task2?')
   })
 
   test('should return a valid message on success', async () => {
     const { sut } = makeSut()
     const response = await sut.handle()
-    expect(response).toEqual('NevascaXd, você já valid_task1, valid_task2 e valid_task2?')
+    expect(response).toEqual('NevascaXD, você já valid_task1, valid_task2 e valid_task2?')
   })
 })
