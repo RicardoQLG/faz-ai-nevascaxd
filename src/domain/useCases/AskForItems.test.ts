@@ -37,6 +37,12 @@ describe('AskForItems', () => {
     expect(getSpy).toBeCalledTimes(1)
   })
 
+  test('should throw an error if GetAllItems throws', async () => {
+    const { sut, getAllItemsRepositoryStub } = makeSut()
+    jest.spyOn(getAllItemsRepositoryStub, 'get').mockImplementationOnce(() => { throw new Error('any_error') })
+    await expect(sut.handle()).rejects.toThrow(new Error('any_error'))
+  })
+
   test('should call SendToChat with correct params', async () => {
     const { sut, sendToChatStub } = makeSut()
     const sendSpy = jest.spyOn(sendToChatStub, 'send')
