@@ -1,3 +1,3 @@
 export interface GetAllItemsRepository {
-  get: () => Promise<any>
+  get: () => Promise<string[]>
 }
