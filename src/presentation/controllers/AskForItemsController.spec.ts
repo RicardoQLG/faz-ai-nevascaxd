@@ -38,4 +38,12 @@ describe('AskForItemsController', () => {
       error: new Error('any_error')
     })
   })
+
+  test('should return a message on success', async () => {
+    const { sut } = makeSut()
+    const response = await sut.handle()
+    expect(response).toEqual({
+      message: 'valid_message'
+    })
+  })
 })
