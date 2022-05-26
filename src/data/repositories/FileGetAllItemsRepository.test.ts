@@ -23,4 +23,11 @@ describe('FileGetAllItemsRepository', () => {
     await sut.get()
     expect(mockedFs.readFileSync).toBeCalledWith('tasks.json')
   })
+
+  test('should call JSON parse with file data', async () => {
+    const { sut } = makeSut()
+    const parseSpy = jest.spyOn(JSON, 'parse')
+    await sut.get()
+    expect(parseSpy).toBeCalledWith('["valid_task"]')
+  })
 })
