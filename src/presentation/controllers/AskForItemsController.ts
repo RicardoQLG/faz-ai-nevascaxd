@@ -9,9 +9,8 @@ export class AskForItemsController implements Controller {
 
   async handle (): Promise<SocketResponse> {
     try {
-      await this.askForItems.handle()
       return {
-        message: ''
+        message: await this.askForItems.handle()
       }
     } catch (error) {
       return {
