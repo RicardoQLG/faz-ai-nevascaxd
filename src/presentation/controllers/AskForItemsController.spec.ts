@@ -28,4 +28,14 @@ describe('AskForItemsController', () => {
     await sut.handle()
     expect(handleSpy).toBeCalledTimes(1)
   })
+
+  test('should return an error if AskForItems throws', async () => {
+    const { sut, askForItemsStub } = makeSut()
+    jest.spyOn(askForItemsStub, 'handle').mockImplementation(() => { throw new Error('any_error') })
+    const response = await sut.handle()
+    expect(response).toEqual({
+      message: '',
+      error: new Error('any_error')
+    })
+  })
 })
