@@ -10,7 +10,10 @@
     "test:integration": "npm run test -- --watch -c ./jest-integration.config.js",
     "test:staged": "npm run test",
     "test:ci": "npm run test -- --coverage",
-    "prepare": "cd .. && husky install ./.husky"
+    "prepare": "cd .. && husky install ./.husky",
+    "start": "node dist/main/server.js",
+    "build": "rimraf dist && tsc",
+    "dev": "sucrase-node src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -36,7 +39,11 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.8",
+    "sucrase": "^3.21.0",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1"
   }
 }
