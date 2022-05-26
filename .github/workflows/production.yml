@@ -22,6 +22,8 @@ jobs:
       - name: Build
         run: |
           npm i
+          echo TWITCH_PASSWORD="${{ secrets.PROD_TWITCH_PASSWORD }}" >> .env
+          echo TWITCH_USERNAME="${{ secrets.PROD_TWITCH_USERNAME }}" >> .env
           npm run build
 
       - name: Copy files
