@@ -3,7 +3,7 @@ import { FileAskForItems } from './FileAskForItems'
 
 class GetAllItemsRepositoryStub implements GetAllItemsRepository {
   async get (): Promise<any> {
-    return await Promise.resolve(['valid_task'])
+    return await Promise.resolve(['valid_task1', 'valid_task2', 'valid_task2'])
   }
 }
 
@@ -38,6 +38,6 @@ describe('AskForItems', () => {
   test('should return a valid message on success', async () => {
     const { sut } = makeSut()
     const response = await sut.handle()
-    expect(response).toEqual('NevascaXd, você já valid_task')
+    expect(response).toEqual('NevascaXd, você já valid_task1, valid_task2 e valid_task2?')
   })
 })

@@ -9,6 +9,7 @@ export class FileAskForItems implements AskForItems {
 
   async handle (): Promise<string> {
     const tasks = await this.getAllItemsRepository.get()
-    return `NevascaXd, você já ${tasks.join(',')}`
+    const lastTask = String(tasks.pop())
+    return `NevascaXd, você já ${tasks.join(', ')} e ${lastTask}?`
   }
 }
