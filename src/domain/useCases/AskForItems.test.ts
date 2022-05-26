@@ -35,9 +35,9 @@ describe('AskForItems', () => {
     await expect(sut.handle()).rejects.toThrow(new Error('any_error'))
   })
 
-  test('should return list of tasks', async () => {
+  test('should return a valid message on success', async () => {
     const { sut } = makeSut()
     const response = await sut.handle()
-    expect(response).toEqual(['valid_task'])
+    expect(response).toEqual('O nevasca tem que fazer: valid_task')
   })
 })
