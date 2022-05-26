@@ -1,16 +1,16 @@
-import { GetAllItemRepository } from '../protocols/GetAllItemRepository'
+import { GetAllItemsRepository } from '../protocols/GetAllItemsRepository'
 import { SendToChat } from '../protocols/SendToChat'
 
 export class AskForItems {
-  private readonly getAllItemRepository: GetAllItemRepository
+  private readonly getAllItemsRepository: GetAllItemsRepository
   private readonly sendToChatStub: SendToChat
-  constructor (getAllItemRepository: GetAllItemRepository, sendToChatStub: SendToChat) {
-    this.getAllItemRepository = getAllItemRepository
+  constructor (getAllItemsRepository: GetAllItemsRepository, sendToChatStub: SendToChat) {
+    this.getAllItemsRepository = getAllItemsRepository
     this.sendToChatStub = sendToChatStub
   }
 
   async handle (): Promise<void> {
-    const items = await this.getAllItemRepository.get()
+    const items = await this.getAllItemsRepository.get()
     const promises = items.map(async item => await this.sendToChatStub.send(item))
     await Promise.all(promises)
   }

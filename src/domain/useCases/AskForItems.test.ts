@@ -1,4 +1,4 @@
-import { GetAllItemRepository } from '../protocols/GetAllItemRepository'
+import { GetAllItemsRepository } from '../protocols/GetAllItemsRepository'
 import { SendToChat } from '../protocols/SendToChat'
 import { AskForItems } from './AskForItems'
 
@@ -6,7 +6,7 @@ class SendToChatStub implements SendToChat {
   async send (message: string): Promise<void> {}
 }
 
-class GetAllItemRepositoryStub implements GetAllItemRepository {
+class GetAllItemsRepositoryStub implements GetAllItemsRepository {
   async get (): Promise<any> {
     return await Promise.resolve(['valid_task'])
   }
@@ -14,25 +14,25 @@ class GetAllItemRepositoryStub implements GetAllItemRepository {
 
 interface SutTypes {
   sendToChatStub: SendToChatStub
-  getAllItemRepositoryStub: GetAllItemRepositoryStub
+  getAllItemsRepositoryStub: GetAllItemsRepositoryStub
   sut: AskForItems
 }
 
 const makeSut = (): SutTypes => {
   const sendToChatStub = new SendToChatStub()
-  const getAllItemsStub = new GetAllItemRepositoryStub()
+  const getAllItemsStub = new GetAllItemsRepositoryStub()
   const sut = new AskForItems(getAllItemsStub, sendToChatStub)
   return {
     sendToChatStub,
-    getAllItemRepositoryStub: getAllItemsStub,
+    getAllItemsRepositoryStub: getAllItemsStub,
     sut
   }
 }
 
 describe('AskForItems', () => {
   test('should call GetAllItems', async () => {
-    const { sut, getAllItemRepositoryStub } = makeSut()
-    const getSpy = jest.spyOn(getAllItemRepositoryStub, 'get')
+    const { sut, getAllItemsRepositoryStub } = makeSut()
+    const getSpy = jest.spyOn(getAllItemsRepositoryStub, 'get')
     await sut.handle()
     expect(getSpy).toBeCalledTimes(1)
   })
