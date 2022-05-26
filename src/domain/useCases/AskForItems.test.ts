@@ -49,4 +49,10 @@ describe('AskForItems', () => {
     await sut.handle()
     expect(sendSpy).toBeCalledWith('valid_task')
   })
+
+  test('should throw an error if SendToChat throws', async () => {
+    const { sut, sendToChatStub } = makeSut()
+    jest.spyOn(sendToChatStub, 'send').mockImplementationOnce(() => { throw new Error('any_error') })
+    await expect(sut.handle()).rejects.toThrow(new Error('any_error'))
+  })
 })
