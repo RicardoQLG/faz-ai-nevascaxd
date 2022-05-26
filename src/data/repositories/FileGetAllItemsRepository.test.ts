@@ -11,6 +11,7 @@ interface SutTypes {
 }
 
 const makeSut = (): SutTypes => {
+  jest.spyOn(JSON, 'parse').mockReturnValue(['valid_task'])
   const sut = new FileGetAllItemsRepository()
   return {
     sut
@@ -33,7 +34,13 @@ describe('FileGetAllItemsRepository', () => {
 
   test('should throw an error if JSON parse throws', async () => {
     const { sut } = makeSut()
-    jest.spyOn(JSON, 'parse').mockImplementation(() => { throw new Error('any_error') })
+    jest.spyOn(JSON, 'parse').mockImplementationOnce(() => { throw new Error('any_error') })
     await expect(sut.get()).rejects.toThrow(new Error('any_error'))
+  })
+
+  test('should return parsed file data', async () => {
+    const { sut } = makeSut()
+    const response = await sut.get()
+    expect(response).toEqual(['valid_task'])
   })
 })
