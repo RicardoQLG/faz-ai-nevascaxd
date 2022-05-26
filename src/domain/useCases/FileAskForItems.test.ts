@@ -1,5 +1,5 @@
-import { GetAllItemsRepository } from '../protocols/GetAllItemsRepository'
-import { AskForItems } from './AskForItems'
+import { GetAllItemsRepository } from '../../data/protocols/GetAllItemsRepository'
+import { FileAskForItems } from './FileAskForItems'
 
 class GetAllItemsRepositoryStub implements GetAllItemsRepository {
   async get (): Promise<any> {
@@ -9,12 +9,12 @@ class GetAllItemsRepositoryStub implements GetAllItemsRepository {
 
 interface SutTypes {
   getAllItemsRepositoryStub: GetAllItemsRepositoryStub
-  sut: AskForItems
+  sut: FileAskForItems
 }
 
 const makeSut = (): SutTypes => {
   const getAllItemsStub = new GetAllItemsRepositoryStub()
-  const sut = new AskForItems(getAllItemsStub)
+  const sut = new FileAskForItems(getAllItemsStub)
   return {
     getAllItemsRepositoryStub: getAllItemsStub,
     sut
