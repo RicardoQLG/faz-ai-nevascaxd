@@ -9,6 +9,6 @@ export class FileAskForItems implements AskForItems {
 
   async handle (): Promise<string> {
     const tasks = await this.getAllItemsRepository.get()
-    return `O nevasca tem que fazer: ${tasks.join(',')}`
+    return `NevascaXd, você já ${tasks.join(',')}`
   }
 }

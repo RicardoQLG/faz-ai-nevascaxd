@@ -38,6 +38,6 @@ describe('AskForItems', () => {
   test('should return a valid message on success', async () => {
     const { sut } = makeSut()
     const response = await sut.handle()
-    expect(response).toEqual('O nevasca tem que fazer: valid_task')
+    expect(response).toEqual('NevascaXd, você já valid_task')
   })
 })
