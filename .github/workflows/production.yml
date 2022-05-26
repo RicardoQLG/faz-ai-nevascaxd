@@ -32,6 +32,6 @@ jobs:
           port: ${{ secrets.PROD_PORT }}
           key: ${{ secrets.PROD_KEY }}
           rm: true
-          strip_components: 2
-          source: "./dist/"
+          strip_components: 3
+          source: "./dist/src"
           target: "~/app"
